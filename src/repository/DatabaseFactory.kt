@@ -7,6 +7,7 @@ import kotlinx.coroutines.withContext
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
+import ru.skovoroda.data.table.RecipeTable
 import ru.skovoroda.data.table.UserTable
 
 object DatabaseFactory {
@@ -14,6 +15,7 @@ object DatabaseFactory {
     fun init(){
         Database.connect(hikari())
         transaction { SchemaUtils.create(UserTable) }
+        transaction { SchemaUtils.create(RecipeTable) }
     }
 
     private fun hikari(): HikariDataSource {
