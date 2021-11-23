@@ -26,7 +26,6 @@ object DatabaseFactory {
         config.maximumPoolSize = 3
         config.isAutoCommit = false
         config.transactionIsolation = "TRANSACTION_REPEATABLE_READ"
-        config.validate()
 
         val uri = URI(System.getenv("DATABASE_URL"))
         val userName = uri.userInfo.split(":").toTypedArray()[0]
