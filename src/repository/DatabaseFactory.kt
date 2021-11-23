@@ -31,13 +31,13 @@ object DatabaseFactory {
         val uri = URI(System.getenv("DATABASE_URL"))
         val userName = uri.userInfo.split(":").toTypedArray()[0]
         val password = uri.userInfo.split(":").toTypedArray()[1]
+        println("jbdcurl is " + "jdbc:postgresql://" + uri.host + ":" + uri.port + uri.path + "?sslmode=require" + "&user=$userName&password=$password")
 
         config.jdbcUrl =
             "jdbc:postgresql://" + uri.host + ":" + uri.port + uri.path + "?sslmode=require" + "&user=$userName&password=$password"
         config.validate()
         return HikariDataSource(config)
     }
-
 
     suspend fun <T> dbQuery(block: () -> T): T =
         withContext(Dispatchers.IO) {
