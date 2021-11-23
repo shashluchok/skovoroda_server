@@ -38,6 +38,7 @@ fun Route.UserRoutes(
                     HttpStatusCode.BadRequest,
                     AuthResponse(success = false, message = "Missing some fields.")
                 )
+                println("!!! exception while processing register request")
                 return@post
             }
 
